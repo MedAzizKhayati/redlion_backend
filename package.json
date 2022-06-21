@@ -1,8 +1,6 @@
 {
-  "name": "nest-auth-example",
+  "name": "redlion_backend",
   "version": "0.0.1",
-  "description": "Nest.js authentication with Passport. Realworld example",
-  "author": "Jaime Leonardo Suncin Cruz <leosuncin@gmail.com>",
   "private": true,
   "license": "MIT",
   "scripts": {
