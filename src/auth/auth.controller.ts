@@ -2,6 +2,8 @@ import {
   Body,
   Controller,
   Get,
+  HttpCode,
+  HttpStatus,
   Post,
   UseGuards,
   UseInterceptors,
@@ -21,6 +23,7 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('register')
+  @HttpCode(HttpStatus.CREATED)
   @UseInterceptors(TokenInterceptor)
   register(@Body() signUp: SignUp): Promise<User> {
     return this.authService.register(signUp);
@@ -28,6 +31,7 @@ export class AuthController {
 
   @Post('login')
   @UseGuards(LocalAuthGuard)
+  @HttpCode(HttpStatus.OK)
   @UseInterceptors(TokenInterceptor)
   async login(@AuthUser() user: User): Promise<User> {
     return user;
