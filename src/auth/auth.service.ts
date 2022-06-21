@@ -37,7 +37,7 @@ export class AuthService {
       );
     }
     delete user.password;
-
+    console.log(user);
     return user;
   }
 
