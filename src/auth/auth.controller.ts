@@ -20,7 +20,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly authService: AuthService) { }
 
   @Post('register')
   @HttpCode(HttpStatus.CREATED)
@@ -30,11 +30,13 @@ export class AuthController {
   }
 
   @Post('login')
-  @UseGuards(LocalAuthGuard)
-  // @HttpCode(HttpStatus.OK)
+  @HttpCode(HttpStatus.OK)
   @UseInterceptors(TokenInterceptor)
-  async login(@AuthUser() user: User): Promise<User> {
-    return user;
+  async login(
+    @Body('email') email: string,
+    @Body('password') password: string
+  ): Promise<User> {
+    return this.authService.login(email, password);
   }
 
   @Get('/me')
