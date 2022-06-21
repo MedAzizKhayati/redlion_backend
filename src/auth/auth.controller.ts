@@ -31,7 +31,7 @@ export class AuthController {
 
   @Post('login')
   @UseGuards(LocalAuthGuard)
-  @HttpCode(HttpStatus.OK)
+  // @HttpCode(HttpStatus.OK)
   @UseInterceptors(TokenInterceptor)
   async login(@AuthUser() user: User): Promise<User> {
     return user;

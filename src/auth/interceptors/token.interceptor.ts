@@ -26,7 +26,7 @@ export class TokenInterceptor implements NestInterceptor {
         const response = context.switchToHttp().getResponse<Response>();
         const token = this.authService.signToken(user);
 
-        response.setHeader('Authorization', `Bearer ${token}`);
+        // response.setHeader('Authorization', `Bearer ${token}`);
         response.cookie('token', token, {
           httpOnly: true,
           signed: true,
