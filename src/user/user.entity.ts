@@ -1,6 +1,6 @@
 import * as bcrypt from 'bcryptjs';
 import { Exclude } from 'class-transformer';
-import { UserRoleEnum } from './user-role.enum';
+import { UserRoleEnum } from './enums/user-role.enum';
 import {
   Entity,
   Column,
@@ -8,6 +8,7 @@ import {
   BeforeUpdate,
 } from 'typeorm';
 import { TimestampEntities } from 'src/generics/timestamp.entity';
+import { UserStatusEnum } from './enums/user-status.enum';
 
 @Entity()
 export class User extends TimestampEntities {
@@ -21,6 +22,18 @@ export class User extends TimestampEntities {
   @Column()
   @Exclude()
   password: string;
+
+  @Column({
+    type: 'enum',
+    enum: UserStatusEnum,
+    default: UserStatusEnum.PENDING,
+  })
+  status: UserStatusEnum;
+
+  @Column({
+    default: 5,
+  })
+  requestsRemaining: number;
 
   @Column({
     type: 'enum',

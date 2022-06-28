@@ -5,6 +5,7 @@ import { User } from '../user/user.entity';
 import { SignUp } from './dto/sign-up.dto';
 import { JwtPayload } from './interfaces/jwt-payload.interface';
 import { UserService } from '../user/user.service';
+import { UserStatusEnum } from 'src/user/enums/user-status.enum';
 
 @Injectable()
 export class AuthService {
@@ -36,6 +37,19 @@ export class AuthService {
         `Wrong password for user with email: ${email}`,
       );
     }
+
+    if(user.status === UserStatusEnum.PENDING) {
+      throw new UnauthorizedException(
+        `Your account is pending for approval. Please contact us for more information.`,
+      );
+    }
+
+    if(user.status === UserStatusEnum.REJECTED) {
+      throw new UnauthorizedException(
+        `Your account has been rejected. Please contact us for more information.`,
+      );
+    }
+
     delete user.password;
     return user;
   }

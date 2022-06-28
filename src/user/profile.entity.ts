@@ -1,3 +1,4 @@
+import { TimestampEntities } from 'src/generics/timestamp.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -9,10 +10,7 @@ import {
 import { User } from './user.entity';
 
 @Entity()
-export class Profile {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class Profile extends TimestampEntities {
   @Column()
   phone: string;
 
