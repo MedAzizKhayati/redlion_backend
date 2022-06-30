@@ -38,13 +38,13 @@ export class AuthService {
       );
     }
 
-    if(user.status === UserStatusEnum.PENDING) {
+    if (user.status === UserStatusEnum.PENDING) {
       throw new UnauthorizedException(
         `Your account is pending for approval. Please contact us for more information.`,
       );
     }
 
-    if(user.status === UserStatusEnum.REJECTED) {
+    if (user.status === UserStatusEnum.REJECTED) {
       throw new UnauthorizedException(
         `Your account has been rejected. Please contact us for more information.`,
       );
@@ -59,6 +59,11 @@ export class AuthService {
 
     try {
       user = await this.userService.findOne({ where: { email: payload.sub } });
+      if (user.status !== UserStatusEnum.APPROVED)
+        throw new UnauthorizedException(
+          `Your account is ${user.status}! Please contact us for more information.`
+        );
+
     } catch (error) {
       throw new UnauthorizedException(
         `There isn't any user with email: ${payload.sub}`,
