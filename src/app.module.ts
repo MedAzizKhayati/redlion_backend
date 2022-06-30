@@ -5,6 +5,7 @@ import { AppController } from './app.controller';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { HealthController } from './health.controller';
+import { MlApiModule } from './ml-api/ml-api.module';
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { HealthController } from './health.controller';
     TerminusModule,
     UserModule,
     AuthModule,
+    MlApiModule
   ],
   controllers: [AppController, HealthController],
   providers: [],

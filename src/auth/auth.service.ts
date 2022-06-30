@@ -63,7 +63,6 @@ export class AuthService {
         throw new UnauthorizedException(
           `Your account is ${user.status}! Please contact us for more information.`
         );
-
     } catch (error) {
       throw new UnauthorizedException(
         `There isn't any user with email: ${payload.sub}`,
