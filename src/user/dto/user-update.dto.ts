@@ -1,8 +1,7 @@
-import { IsDefined, IsString, IsNotEmpty } from 'class-validator';
+import { IsString, Matches } from 'class-validator';
 
 export class UserUpdate {
-  @IsDefined()
   @IsString()
-  @IsNotEmpty()
-  readonly name;
+  @Matches(/[a-zA-Z .]{3,50}/)
+  readonly name: string;
 }
