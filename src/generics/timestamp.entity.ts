@@ -2,7 +2,7 @@ import { CreateDateColumn, UpdateDateColumn, DeleteDateColumn, PrimaryGeneratedC
 
 export class TimestampEntities {
   @PrimaryGeneratedColumn()
-  id: string;
+  id: number;
 
   @CreateDateColumn({
     update: false,

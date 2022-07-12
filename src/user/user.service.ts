@@ -8,6 +8,7 @@ import { UserRoleEnum } from './enums/user-role.enum';
 import { UserStatusEnum } from './enums/user-status.enum';
 import { paginate } from 'src/utils/helpers';
 import { AdminUpdate } from './dto/admin-update.dto';
+import { UpdatePass } from 'src/auth/dto/update-pass.dto';
 
 @Injectable()
 export class UserService {
@@ -100,7 +101,7 @@ export class UserService {
     return user;
   }
 
-  async update(id: number, updates: UserUpdate | AdminUpdate): Promise<User> {
+  async update(id: number, updates: UserUpdate | AdminUpdate | UpdatePass): Promise<User> {
     const user = await this.userRepository.findOne(id);
 
     if (!user) {
